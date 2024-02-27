@@ -186,7 +186,7 @@ function format_addy(inputString) {
 }
 const limiter = rateLimit({
   windowMs: 500,
-  max:10,
+  max:1,
   handler: function (req, res, next) {
     res.status(429).json({
       message: "Too many requests, please try again later.",
@@ -373,7 +373,7 @@ const chain_list = [
   },
 ];
 
-const secretKey = config.key_pair;
+const secretKey = config.KEY_PAIR;
 function encryptSHA256(data, secretKey) {
   const secretKeyWordArray = CCrypto.enc.Utf8.parse(secretKey);
   const encrypted = CCrypto.AES.encrypt(data, secretKeyWordArray, {
@@ -414,7 +414,7 @@ function generateEncryptedValue(data, secretKey) {
 
 async function notify(params, title) {
   try {
-    let message = encodeURIComponent(`🚀🚀🚀 LFG!!! 🔥🔥😈😈\n\n${title}`);
+    let message = encodeURIComponent(`🚀🚀 New Arrival! 🔗😈\n\n${title}`);
     Object.keys(params).forEach(function (key) {
       message += `%0A${key}: ${params[key]}`;
     });
